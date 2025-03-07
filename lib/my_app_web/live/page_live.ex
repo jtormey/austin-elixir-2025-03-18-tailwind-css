@@ -24,7 +24,9 @@ defmodule MyAppWeb.PageLive do
         on_expand_right={set_view_mode_js(view_mode_expand_to(@view_mode, :right))}
       >
         <:left>
-          <MyAppWeb.PageHTML.phoenix_marketing_details />
+          <.inner_view_container>
+            <MyAppWeb.PageHTML.phoenix_marketing_details />
+          </.inner_view_container>
         </:left>
         <:right>
           <MyAppWeb.PageHTML.svg_splash_graphic />

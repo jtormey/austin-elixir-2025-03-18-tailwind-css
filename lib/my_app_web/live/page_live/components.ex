@@ -37,9 +37,7 @@ defmodule MyAppWeb.PageLive.Components do
           "lg:w-[var(--left-width)]",
           "lg:group-data-[mode=left]:w-[calc(100%-var(--view-padding))]"
         ]}>
-          <.inner_view_container>
-            {render_slot(@left)}
-          </.inner_view_container>
+          {render_slot(@left)}
           <div class="hidden lg:block z-10 absolute inset-y-0 right-0 border-l border-zinc-100 space-y-4">
             <div class="absolute top-6 left-0 -ml-3 space-y-2">
               <.expand_view_button
@@ -62,9 +60,7 @@ defmodule MyAppWeb.PageLive.Components do
           "lg:w-[var(--right-width)]",
           "lg:group-data-[mode=right]:w-[calc(100%-var(--view-padding))]"
         ]}>
-          <.inner_view_container>
-            {render_slot(@right)}
-          </.inner_view_container>
+          {render_slot(@right)}
         </div>
       </div>
     </div>
