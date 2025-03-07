@@ -6,19 +6,16 @@ defmodule MyAppWeb.PageLive do
   def render(assigns) do
     ~H"""
     <.top_nav>
-      <.link patch={~p"/?mode=left"}>Left</.link>
-      <.link patch={~p"/"}>Split</.link>
-      <.link patch={~p"/?mode=right"}>Right</.link>
       <.button phx-click={set_view_mode_js(:left)}>Left</.button>
-      <.button phx-click={set_view_mode_js(:split)}>Split</.button>
+      <.button phx-click={set_view_mode_js(:split)} class="hidden xl:block">Split</.button>
       <.button phx-click={set_view_mode_js(:right)}>Right</.button>
     </.top_nav>
 
     <main class="flex-1 flex flex-col">
       <.animated_split_view
         view_mode={@view_mode}
-        on_expand_left={set_view_mode_js(view_mode_expand_to(:left, @view_mode))}
-        on_expand_right={set_view_mode_js(view_mode_expand_to(:right, @view_mode))}
+        on_expand_left={set_view_mode_js(view_mode_expand_to(@view_mode, :left))}
+        on_expand_right={set_view_mode_js(view_mode_expand_to(@view_mode, :right))}
       >
         <:left>
           Left
@@ -39,7 +36,7 @@ defmodule MyAppWeb.PageLive do
     {:noreply, assign(socket, :view_mode, mode_from_param(mode))}
   end
 
-  ## Private
+  ## Helpers
 
   def mode_from_param(mode) do
     case mode do
@@ -49,10 +46,10 @@ defmodule MyAppWeb.PageLive do
     end
   end
 
-  def view_mode_expand_to(direction, current) do
-    case {direction, current} do
+  def view_mode_expand_to(current, direction) do
+    case {current, direction} do
       {mode, mode} -> nil
-      {mode, :split} -> mode
+      {:split, mode} -> mode
       _otherwise -> :split
     end
   end

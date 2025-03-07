@@ -14,19 +14,24 @@ defmodule MyAppWeb.PageLive.Components do
       <div
         id="split_view_container"
         class={[
+          "[--left-width:60%]",
+          "[--right-width:calc(100%-var(--left-width))]",
+          "[--view-padding:--spacing(8)]",
           "h-full flex relative isolate",
           "ease-out duration-200 transition-all",
           "group w-[100%] ml-[0%]",
-          "xl:data-[mode=left]:w-[calc(140%-theme(spacing.8))]",
-          "xl:data-[mode=right]:w-[calc(160%-theme(spacing.8))] xl:data-[mode=right]:ml-[calc(-60%+theme(spacing.8))]"
+          "xl:data-[mode=left]:w-[calc(100%+var(--right-width)-var(--view-padding))]",
+          "xl:data-[mode=right]:w-[calc(100%+var(--left-width)-var(--view-padding))]",
+          "xl:data-[mode=right]:ml-[calc(0%-var(--left-width)+var(--view-padding))]"
         ]}
         data-mode={@view_mode}
       >
         <div class={[
           "h-full relative",
           "ease-out duration-200 transition-all",
-          "hidden group-data-[mode=left]:block group-data-[mode=split]:block",
-          "xl:block xl:w-[60%] xl:group-data-[mode=left]:w-[calc(100%-theme(spacing.8))]"
+          "hidden group-data-[mode=left]:block group-data-[mode=split]:block xl:block",
+          "xl:w-[var(--left-width)]",
+          "xl:group-data-[mode=left]:w-[calc(100%-var(--view-padding))]"
         ]}>
           <.inner_view_container>
             {render_slot(@left)}
@@ -49,8 +54,9 @@ defmodule MyAppWeb.PageLive.Components do
         <div class={[
           "h-full relative",
           "ease-out duration-200 transition-all",
-          "hidden group-data-[mode=right]:block",
-          "xl:block xl:w-[40%] xl:group-data-[mode=right]:w-[calc(100%-theme(spacing.8))]"
+          "hidden group-data-[mode=right]:block xl:block",
+          "xl:w-[var(--right-width)]",
+          "xl:group-data-[mode=right]:w-[calc(100%-var(--view-padding))]"
         ]}>
           <.inner_view_container>
             {render_slot(@right)}
