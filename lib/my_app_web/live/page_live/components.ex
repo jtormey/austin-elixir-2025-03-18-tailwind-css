@@ -75,7 +75,7 @@ defmodule MyAppWeb.PageLive.Components do
 
   def inner_view_container(assigns) do
     ~H"""
-    <div class="mx-auto max-w-4xl p-4 sm:p-6 md:px-8">
+    <div class="mx-auto max-w-4xl p-4 sm:p-6 md:px-8 text-sm text-zinc-700">
       {render_slot(@inner_block)}
     </div>
     """
