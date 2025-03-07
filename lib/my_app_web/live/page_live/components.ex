@@ -1,6 +1,7 @@
 defmodule MyAppWeb.PageLive.Components do
   use MyAppWeb, :html
 
+  attr :view_size, :atom, values: ~w(eq md lg)a, required: true
   attr :view_mode, :atom, values: ~w(left split right)a, required: true
   attr :on_expand_left, JS
   attr :on_expand_right, JS
@@ -14,7 +15,9 @@ defmodule MyAppWeb.PageLive.Components do
       <div
         id="split_view_container"
         class={[
-          "[--left-width:60%]",
+          "data-[size=eq]:[--left-width:50%]",
+          "data-[size=md]:[--left-width:60%]",
+          "data-[size=lg]:[--left-width:70%]",
           "[--right-width:calc(100%-var(--left-width))]",
           "[--view-padding:--spacing(8)]",
           "h-full flex relative isolate",
@@ -24,6 +27,7 @@ defmodule MyAppWeb.PageLive.Components do
           "xl:data-[mode=right]:w-[calc(100%+var(--left-width)-var(--view-padding))]",
           "xl:data-[mode=right]:ml-[calc(0%-var(--left-width)+var(--view-padding))]"
         ]}
+        data-size={@view_size}
         data-mode={@view_mode}
       >
         <div class={[
@@ -95,6 +99,10 @@ defmodule MyAppWeb.PageLive.Components do
   end
 
   ## JS
+
+  def set_view_size_js(size) do
+    JS.push("update_view_size", value: %{size: size})
+  end
 
   @doc """
   Switches view modes for `animated_split_view`, eagerly updating the view on
