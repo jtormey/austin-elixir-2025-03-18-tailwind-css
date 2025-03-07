@@ -16,8 +16,8 @@ defmodule MyAppWeb.PageLive.Components do
         id="split_view_container"
         class={[
           "data-[size=eq]:[--right-width:50%]",
-          "data-[size=md]:[--right-width:40%]",
-          "data-[size=sm]:[--right-width:30%]",
+          "data-[size=md]:[--right-width:35%]",
+          "data-[size=sm]:[--right-width:20%]",
           "[--left-width:calc(100%-var(--right-width))]",
           "[--view-padding:--spacing(8)]",
           "h-full flex relative isolate",
