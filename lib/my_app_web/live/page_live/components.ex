@@ -1,7 +1,7 @@
 defmodule MyAppWeb.PageLive.Components do
   use MyAppWeb, :html
 
-  attr :view_size, :atom, values: ~w(eq md sm fixed)a, required: true
+  attr :view_size, :atom, values: ~w(eq md sm)a, required: true
   attr :view_mode, :atom, values: ~w(left split right)a, required: true
   attr :on_expand_left, JS
   attr :on_expand_right, JS
@@ -18,7 +18,6 @@ defmodule MyAppWeb.PageLive.Components do
           "data-[size=eq]:[--right-width:50%]",
           "data-[size=md]:[--right-width:40%]",
           "data-[size=sm]:[--right-width:30%]",
-          "data-[size=fixed]:[--right-width:--spacing(80)]",
           "[--left-width:calc(100%-var(--right-width))]",
           "[--view-padding:--spacing(8)]",
           "h-full flex relative isolate",
