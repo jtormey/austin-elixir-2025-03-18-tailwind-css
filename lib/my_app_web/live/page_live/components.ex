@@ -1,7 +1,7 @@
 defmodule MyAppWeb.PageLive.Components do
   use MyAppWeb, :html
 
-  attr :view_size, :atom, values: ~w(eq md lg)a, required: true
+  attr :view_size, :atom, values: ~w(eq md sm fixed)a, required: true
   attr :view_mode, :atom, values: ~w(left split right)a, required: true
   attr :on_expand_left, JS
   attr :on_expand_right, JS
@@ -15,17 +15,18 @@ defmodule MyAppWeb.PageLive.Components do
       <div
         id="split_view_container"
         class={[
-          "data-[size=eq]:[--left-width:50%]",
-          "data-[size=md]:[--left-width:60%]",
-          "data-[size=lg]:[--left-width:70%]",
-          "[--right-width:calc(100%-var(--left-width))]",
+          "data-[size=eq]:[--right-width:50%]",
+          "data-[size=md]:[--right-width:40%]",
+          "data-[size=sm]:[--right-width:30%]",
+          "data-[size=fixed]:[--right-width:--spacing(80)]",
+          "[--left-width:calc(100%-var(--right-width))]",
           "[--view-padding:--spacing(8)]",
           "h-full flex relative isolate",
           "ease-out duration-200 transition-all",
           "group w-[100%] ml-[0%]",
-          "xl:data-[mode=left]:w-[calc(100%+var(--right-width)-var(--view-padding))]",
-          "xl:data-[mode=right]:w-[calc(100%+var(--left-width)-var(--view-padding))]",
-          "xl:data-[mode=right]:ml-[calc(0%-var(--left-width)+var(--view-padding))]"
+          "lg:data-[mode=left]:w-[calc(100%+var(--right-width)-var(--view-padding))]",
+          "lg:data-[mode=right]:w-[calc(100%+var(--left-width)-var(--view-padding))]",
+          "lg:data-[mode=right]:ml-[calc(0%-var(--left-width)+var(--view-padding))]"
         ]}
         data-size={@view_size}
         data-mode={@view_mode}
@@ -33,14 +34,14 @@ defmodule MyAppWeb.PageLive.Components do
         <div class={[
           "h-full relative",
           "ease-out duration-200 transition-all",
-          "hidden group-data-[mode=left]:block group-data-[mode=split]:block xl:block",
-          "xl:w-[var(--left-width)]",
-          "xl:group-data-[mode=left]:w-[calc(100%-var(--view-padding))]"
+          "hidden group-data-[mode=left]:block group-data-[mode=split]:block lg:block",
+          "lg:w-[var(--left-width)]",
+          "lg:group-data-[mode=left]:w-[calc(100%-var(--view-padding))]"
         ]}>
           <.inner_view_container>
             {render_slot(@left)}
           </.inner_view_container>
-          <div class="hidden xl:block z-10 absolute inset-y-0 right-0 border-l border-zinc-100 space-y-4">
+          <div class="hidden lg:block z-10 absolute inset-y-0 right-0 border-l border-zinc-100 space-y-4">
             <div class="absolute top-6 left-0 -ml-3 space-y-2">
               <.expand_view_button
                 icon="hero-chevron-left-mini"
@@ -58,9 +59,9 @@ defmodule MyAppWeb.PageLive.Components do
         <div class={[
           "h-full relative",
           "ease-out duration-200 transition-all",
-          "hidden group-data-[mode=right]:block xl:block",
-          "xl:w-[var(--right-width)]",
-          "xl:group-data-[mode=right]:w-[calc(100%-var(--view-padding))]"
+          "hidden group-data-[mode=right]:block lg:block",
+          "lg:w-[var(--right-width)]",
+          "lg:group-data-[mode=right]:w-[calc(100%-var(--view-padding))]"
         ]}>
           <.inner_view_container>
             {render_slot(@right)}

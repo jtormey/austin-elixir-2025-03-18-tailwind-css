@@ -9,10 +9,11 @@ defmodule MyAppWeb.PageLive do
       <.icon name="hero-magnifying-glass" class="size-4 text-zinc-500" />
       <.button phx-click={set_view_size_js(:eq)}>Equal</.button>
       <.button phx-click={set_view_size_js(:md)}>Medium</.button>
-      <.button phx-click={set_view_size_js(:lg)}>Large</.button>
+      <.button phx-click={set_view_size_js(:sm)}>Small</.button>
+      <.button phx-click={set_view_size_js(:fixed)}>Fixed</.button>
       <.icon name="hero-view-columns" class="size-4 text-zinc-500" />
       <.button phx-click={set_view_mode_js(:left)}>Left</.button>
-      <.button phx-click={set_view_mode_js(:split)} class="hidden xl:block">Split</.button>
+      <.button phx-click={set_view_mode_js(:split)} class="hidden lg:block">Split</.button>
       <.button phx-click={set_view_mode_js(:right)}>Right</.button>
     </.top_nav>
 
@@ -54,7 +55,8 @@ defmodule MyAppWeb.PageLive do
   def size_from_param(size) do
     case size do
       "md" -> :md
-      "lg" -> :lg
+      "sm" -> :sm
+      "fixed" -> :fixed
       _otherwise -> :eq
     end
   end
