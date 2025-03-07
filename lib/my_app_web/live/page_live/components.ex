@@ -98,6 +98,30 @@ defmodule MyAppWeb.PageLive.Components do
     """
   end
 
+  slot :inner_content
+
+  def main(assigns) do
+    ~H"""
+    <main class="flex-1 flex flex-col">
+      {render_slot(@inner_block)}
+    </main>
+    """
+  end
+
+  slot :inner_content
+
+  def main_in_window(assigns) do
+    ~H"""
+    <main class={[
+      "w-[900px] h-[600px] mx-auto my-32",
+      "flex rotate-10",
+      "border border-zinc-100 rounded-lg overflow-hidden"
+    ]}>
+      {render_slot(@inner_block)}
+    </main>
+    """
+  end
+
   ## JS
 
   def set_view_size_js(size) do

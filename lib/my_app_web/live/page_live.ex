@@ -16,7 +16,7 @@ defmodule MyAppWeb.PageLive do
       <.button phx-click={set_view_mode_js(:right)}>Right</.button>
     </.top_nav>
 
-    <main class="flex-1 flex flex-col">
+    <.main>
       <.animated_split_view
         view_size={@view_size}
         view_mode={@view_mode}
@@ -30,7 +30,7 @@ defmodule MyAppWeb.PageLive do
           Right
         </:right>
       </.animated_split_view>
-    </main>
+    </.main>
     """
   end
 
