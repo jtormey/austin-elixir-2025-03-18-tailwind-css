@@ -579,7 +579,7 @@ defmodule MyAppWeb.CoreComponents do
   width, height, and background color classes.
 
   Icons are extracted from the `deps/heroicons` directory and bundled within
-  your compiled app.css by the plugin in your `assets/tailwind.config.js`.
+  your compiled app.css by the plugin in `assets/css/tailwind_heroicons.js`.
 
   ## Examples
 
