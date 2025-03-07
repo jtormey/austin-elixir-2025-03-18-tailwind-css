@@ -18,6 +18,26 @@ defmodule MyAppWeb.CoreComponents do
 
   alias Phoenix.LiveView.JS
 
+  slot :inner_block
+
+  def top_nav(assigns) do
+    ~H"""
+    <header class="px-4 sm:px-6 lg:px-8 flex items-center justify-between border-b border-zinc-100 py-3 text-sm">
+      <div class="flex items-center gap-4">
+        <a href="/">
+          <img src="/images/logo.svg" width="36" />
+        </a>
+        <p class="bg-brand/5 text-brand rounded-full px-2 font-medium leading-6">
+          v{Application.spec(:phoenix, :vsn)}
+        </p>
+      </div>
+      <div class="flex items-center gap-4 font-semibold leading-6 text-zinc-900">
+        {render_slot(@inner_block)}
+      </div>
+    </header>
+    """
+  end
+
   @doc """
   Renders a modal.
 
