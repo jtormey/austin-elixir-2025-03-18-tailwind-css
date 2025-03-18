@@ -17,6 +17,7 @@ defmodule MyAppWeb.Router do
   scope "/", MyAppWeb do
     pipe_through :browser
 
+    live "/example/clipboard-copy", ClipboardCopyLive
     live "/example/view-transition", ViewTransitionLive
     live "/example/animated-split-view", AnimatedSplitViewLive
     get "/home", PageController, :home

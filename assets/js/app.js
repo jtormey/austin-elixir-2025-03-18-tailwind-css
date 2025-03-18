@@ -42,3 +42,27 @@ liveSocket.connect()
 // >> liveSocket.disableLatencySim()
 window.liveSocket = liveSocket
 
+window.addEventListener("phx:copy", (event) => {
+  let clipboardItem
+
+  if (event.detail.value) {
+    clipboardItem = new ClipboardItem({
+      "text/plain": new Blob([event.detail.value], { type: "text/plain" })
+    })
+  } else if (event.detail.id) {
+    let el = document.getElementById(event.detail.id)
+
+    if (el) {
+      clipboardItem = new ClipboardItem({
+        "text/plain": new Blob([el.innerText], { type: "text/plain" }),
+        "text/html": new Blob([el.innerHTML], { type: "text/html" })
+      })
+    }
+  }
+
+  if (clipboardItem) {
+    navigator.clipboard.write([clipboardItem]).then(() => {
+      event.target.dataset.copied = true
+    })
+  }
+})
