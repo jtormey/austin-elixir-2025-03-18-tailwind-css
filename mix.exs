@@ -46,6 +46,7 @@ defmodule MyApp.MixProject do
        app: false,
        compile: false,
        depth: 1},
+      {:tailwind_formatter, "~> 0.4.2", only: [:dev, :test], runtime: false},
       {:telemetry_metrics, "~> 1.0"},
       {:telemetry_poller, "~> 1.0"},
       {:jason, "~> 1.2"},
