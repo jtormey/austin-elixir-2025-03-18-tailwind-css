@@ -77,9 +77,11 @@ defmodule MyAppWeb.ViewTransitionLive do
       {
         "transition-all xduration-300 ease-out",
         "group-[.card-change]/page-transition:opacity-0 " <>
+          "group-[.card-prev]/page-transition:-rotate-15 " <>
           "group-[.card-prev]/page-transition:translate-x-[-100%] " <>
+          "group-[.card-next]/page-transition:rotate-15 " <>
           "group-[.card-next]/page-transition:translate-x-[100%]",
-        "opacity-100 translate-x-[0%]"
+        "opacity-100 rotate-0 translate-x-[0%]"
       },
       time: 300
     )
@@ -90,9 +92,11 @@ defmodule MyAppWeb.ViewTransitionLive do
     JS.hide(
       transition: {
         "transition-all duration-300 ease-out",
-        "opacity-100 translate-x-[0%]",
+        "opacity-100 rotate-0 translate-x-[0%]",
         "group-[.card-change]/page-transition:opacity-0 " <>
+          "group-[.card-prev]/page-transition:rotate-15 " <>
           "group-[.card-prev]/page-transition:translate-x-[100%] " <>
+          "group-[.card-next]/page-transition:-rotate-15 " <>
           "group-[.card-next]/page-transition:translate-x-[-100%]"
       },
       time: 300
