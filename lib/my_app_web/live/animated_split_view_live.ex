@@ -1,7 +1,7 @@
-defmodule MyAppWeb.PageLive do
+defmodule MyAppWeb.AnimatedSplitViewLive do
   use MyAppWeb, :live_view
 
-  import MyAppWeb.PageLive.Components
+  import MyAppWeb.AnimatedSplitViewLive.Components
 
   def render(assigns) do
     ~H"""

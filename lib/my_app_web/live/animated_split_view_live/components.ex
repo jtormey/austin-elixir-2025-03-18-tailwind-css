@@ -1,4 +1,4 @@
-defmodule MyAppWeb.PageLive.Components do
+defmodule MyAppWeb.AnimatedSplitViewLive.Components do
   use MyAppWeb, :html
 
   attr :view_size, :atom, values: ~w(eq md sm)a, required: true
