@@ -20,8 +20,8 @@ defmodule MyAppWeb.PageLive.Components do
           "data-[size=sm]:[--right-width:20%]",
           "[--left-width:calc(100%-var(--right-width))]",
           "[--view-padding:--spacing(8)]",
-          "h-full flex relative isolate",
-          "ease-out duration-200 transition-all",
+          "relative isolate flex h-full",
+          "transition-all duration-200 ease-out",
           "group/split-view w-[100%] ml-[0%]",
           "lg:data-[mode=right]:ml-[calc(0%-var(--left-width)+var(--view-padding))]"
         ]}
@@ -29,8 +29,8 @@ defmodule MyAppWeb.PageLive.Components do
         data-mode={@view_mode}
       >
         <div class={[
-          "h-full w-full relative",
-          "ease-out duration-200 transition-all",
+          "relative h-full w-full",
+          "transition-all duration-200 ease-out",
           "hidden lg:block",
           "group-data-[mode=left]/split-view:block",
           "group-data-[mode=split]/split-view:block",
@@ -38,7 +38,7 @@ defmodule MyAppWeb.PageLive.Components do
           "lg:group-data-[mode=left]/split-view:w-[calc(100%-var(--view-padding))]"
         ]}>
           {render_slot(@left)}
-          <div class="hidden lg:block z-10 absolute inset-y-0 right-0 border-l border-zinc-100 space-y-4">
+          <div class="absolute inset-y-0 right-0 z-10 hidden space-y-4 border-l border-zinc-100 lg:block">
             <div class="absolute top-6 left-0 -ml-3 space-y-2">
               <.expand_view_button
                 icon="hero-chevron-left-mini"
@@ -55,7 +55,7 @@ defmodule MyAppWeb.PageLive.Components do
         </div>
         <div class={[
           "h-full w-full lg:absolute",
-          "ease-out duration-200 transition-all",
+          "transition-all duration-200 ease-out",
           "hidden group-data-[mode=right]/split-view:block",
           "lg:block",
           "lg:w-[var(--right-width)]",
@@ -75,7 +75,7 @@ defmodule MyAppWeb.PageLive.Components do
 
   def inner_view_container(assigns) do
     ~H"""
-    <div class="mx-auto max-w-4xl p-4 sm:p-6 md:px-8 text-sm text-zinc-700">
+    <div class="mx-auto max-w-4xl p-4 text-sm text-zinc-700 sm:p-6 md:px-8">
       {render_slot(@inner_block)}
     </div>
     """
@@ -88,8 +88,8 @@ defmodule MyAppWeb.PageLive.Components do
     ~H"""
     <button
       class={[
-        "h-8 w-6 flex items-center justify-center border rounded",
-        "bg-zinc-100 text-zinc-700 disabled:text-zinc-400 border-zinc-200"
+        "flex h-8 w-6 items-center justify-center rounded border",
+        "border-zinc-200 bg-zinc-100 text-zinc-700 disabled:text-zinc-400"
       ]}
       {@rest}
     >
@@ -102,7 +102,7 @@ defmodule MyAppWeb.PageLive.Components do
 
   def main(assigns) do
     ~H"""
-    <main class="flex-1 flex flex-col">
+    <main class="flex flex-1 flex-col">
       {render_slot(@inner_block)}
     </main>
     """
@@ -114,8 +114,8 @@ defmodule MyAppWeb.PageLive.Components do
     ~H"""
     <main class={[
       "w-[900px] h-[600px] mx-auto my-32",
-      "flex rotate-10",
-      "border border-zinc-100 rounded-lg overflow-hidden"
+      "rotate-10 flex",
+      "overflow-hidden rounded-lg border border-zinc-100"
     ]}>
       {render_slot(@inner_block)}
     </main>
