@@ -19,6 +19,7 @@ defmodule MyAppWeb.Router do
 
     get "/", PageController, :home
 
+    live "/test", TestLive
     live "/example/clipboard-copy", ClipboardCopyLive
     live "/example/view-transition", ViewTransitionLive
     live "/example/animated-split-view", AnimatedSplitViewLive
