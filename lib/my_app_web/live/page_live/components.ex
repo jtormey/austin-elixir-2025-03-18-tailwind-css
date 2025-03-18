@@ -20,9 +20,9 @@ defmodule MyAppWeb.PageLive.Components do
           "data-[size=sm]:[--right-width:20%]",
           "[--left-width:calc(100%-var(--right-width))]",
           "[--view-padding:--spacing(8)]",
-          "relative isolate flex h-full",
+          "relative isolate flex h-full w-full",
           "transition-all duration-200 ease-out",
-          "group/split-view w-[100%] ml-[0%]",
+          "group/split-view",
           "lg:data-[mode=right]:ml-[calc(0%-var(--left-width)+var(--view-padding))]"
         ]}
         data-size={@view_size}
@@ -54,12 +54,11 @@ defmodule MyAppWeb.PageLive.Components do
           </div>
         </div>
         <div class={[
-          "h-full w-full lg:absolute",
+          "h-full w-full lg:right-[0%] lg:absolute",
           "transition-all duration-200 ease-out",
-          "hidden group-data-[mode=right]/split-view:block",
-          "lg:block",
+          "hidden lg:block",
+          "group-data-[mode=right]/split-view:block",
           "lg:w-[var(--right-width)]",
-          "lg:right-[0%]",
           "lg:group-data-[mode=left]/split-view:right-[calc(var(--view-padding)-var(--right-width))]",
           "lg:group-data-[mode=right]/split-view:w-[calc(100%-var(--view-padding))]",
           "lg:group-data-[mode=right]/split-view:right-[calc(var(--view-padding)-var(--left-width))]"
