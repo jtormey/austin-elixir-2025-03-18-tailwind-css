@@ -22,20 +22,20 @@ defmodule MyAppWeb.PageLive.Components do
           "[--view-padding:--spacing(8)]",
           "h-full flex relative isolate",
           "ease-out duration-200 transition-all",
-          "group w-[100%] ml-[0%]",
-          "lg:data-[mode=left]:w-[calc(100%+var(--right-width)-var(--view-padding))]",
-          "lg:data-[mode=right]:w-[calc(100%+var(--left-width)-var(--view-padding))]",
+          "group/split-view w-[100%] ml-[0%]",
           "lg:data-[mode=right]:ml-[calc(0%-var(--left-width)+var(--view-padding))]"
         ]}
         data-size={@view_size}
         data-mode={@view_mode}
       >
         <div class={[
-          "h-full relative",
+          "h-full w-full relative",
           "ease-out duration-200 transition-all",
-          "hidden group-data-[mode=left]:block group-data-[mode=split]:block lg:block",
+          "hidden lg:block",
+          "group-data-[mode=left]/split-view:block",
+          "group-data-[mode=split]/split-view:block",
           "lg:w-[var(--left-width)]",
-          "lg:group-data-[mode=left]:w-[calc(100%-var(--view-padding))]"
+          "lg:group-data-[mode=left]/split-view:w-[calc(100%-var(--view-padding))]"
         ]}>
           {render_slot(@left)}
           <div class="hidden lg:block z-10 absolute inset-y-0 right-0 border-l border-zinc-100 space-y-4">
@@ -54,11 +54,15 @@ defmodule MyAppWeb.PageLive.Components do
           </div>
         </div>
         <div class={[
-          "h-full relative",
+          "h-full w-full lg:absolute",
           "ease-out duration-200 transition-all",
-          "hidden group-data-[mode=right]:block lg:block",
+          "hidden group-data-[mode=right]/split-view:block",
+          "lg:block",
           "lg:w-[var(--right-width)]",
-          "lg:group-data-[mode=right]:w-[calc(100%-var(--view-padding))]"
+          "lg:right-[0%]",
+          "lg:group-data-[mode=left]/split-view:right-[calc(var(--view-padding)-var(--right-width))]",
+          "lg:group-data-[mode=right]/split-view:w-[calc(100%-var(--view-padding))]",
+          "lg:group-data-[mode=right]/split-view:right-[calc(var(--view-padding)-var(--left-width))]"
         ]}>
           {render_slot(@right)}
         </div>
