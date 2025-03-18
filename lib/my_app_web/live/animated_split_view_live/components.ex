@@ -19,11 +19,11 @@ defmodule MyAppWeb.AnimatedSplitViewLive.Components do
           "data-[size=md]:[--right-width:35%]",
           "data-[size=sm]:[--right-width:20%]",
           "[--left-width:calc(100%-var(--right-width))]",
-          "[--view-padding:--spacing(8)]",
+          "[--outside-offset:--spacing(8)]",
           "relative isolate flex h-full w-full",
           "transition-all duration-200 ease-out",
-          "group/split-view",
-          "lg:data-[mode=right]:ml-[calc(0%-var(--left-width)+var(--view-padding))]"
+          "group/animated-split-view",
+          "lg:data-[mode=right]:ml-[calc(0%-var(--left-width)+var(--outside-offset))]"
         ]}
         data-size={@view_size}
         data-mode={@view_mode}
@@ -32,10 +32,10 @@ defmodule MyAppWeb.AnimatedSplitViewLive.Components do
           "relative h-full w-full",
           "transition-all duration-200 ease-out",
           "hidden lg:block",
-          "group-data-[mode=left]/split-view:block",
-          "group-data-[mode=split]/split-view:block",
+          "group-data-[mode=left]/animated-split-view:block",
+          "group-data-[mode=split]/animated-split-view:block",
           "lg:w-[var(--left-width)]",
-          "lg:group-data-[mode=left]/split-view:w-[calc(100%-var(--view-padding))]"
+          "lg:group-data-[mode=left]/animated-split-view:w-[calc(100%-var(--outside-offset))]"
         ]}>
           {render_slot(@left)}
           <div class="absolute inset-y-0 right-0 z-10 hidden space-y-4 border-l border-zinc-100 lg:block">
@@ -57,11 +57,11 @@ defmodule MyAppWeb.AnimatedSplitViewLive.Components do
           "h-full w-full lg:right-[0%] lg:absolute",
           "transition-all duration-200 ease-out",
           "hidden lg:block",
-          "group-data-[mode=right]/split-view:block",
+          "group-data-[mode=right]/animated-split-view:block",
           "lg:w-[var(--right-width)]",
-          "lg:group-data-[mode=left]/split-view:right-[calc(var(--view-padding)-var(--right-width))]",
-          "lg:group-data-[mode=right]/split-view:w-[calc(100%-var(--view-padding))]",
-          "lg:group-data-[mode=right]/split-view:right-[calc(var(--view-padding)-var(--left-width))]"
+          "lg:group-data-[mode=left]/animated-split-view:right-[calc(var(--outside-offset)-var(--right-width))]",
+          "lg:group-data-[mode=right]/animated-split-view:w-[calc(100%-var(--outside-offset))]",
+          "lg:group-data-[mode=right]/animated-split-view:right-[calc(var(--outside-offset)-var(--left-width))]"
         ]}>
           {render_slot(@right)}
         </div>
