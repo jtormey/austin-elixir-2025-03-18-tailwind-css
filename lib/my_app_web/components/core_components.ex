@@ -251,6 +251,7 @@ defmodule MyAppWeb.CoreComponents do
       class={[
         "rounded-lg bg-zinc-900 px-3 py-1 hover:bg-zinc-700 phx-submit-loading:opacity-75",
         "text-sm font-semibold leading-6 text-white active:text-white/80",
+        "disabled:cursor-not-allowed",
         @class
       ]}
       {@rest}

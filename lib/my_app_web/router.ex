@@ -18,6 +18,7 @@ defmodule MyAppWeb.Router do
     pipe_through :browser
 
     live "/", PageLive
+    live "/example/view-transition", ViewTransitionLive
     get "/home", PageController, :home
   end
 
