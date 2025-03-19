@@ -19,10 +19,10 @@ defmodule MyAppWeb.ClipboardCopyLive do
 
       <div class="mt-8">
         <.button class="group" phx-click={JS.dispatch("phx:copy", detail: %{id: "copy_target"})}>
-          <span class="flex items-center gap-2 group-data-[copied]:hidden">
+          <span class="flex items-center gap-2 group-data-copied:hidden">
             <.icon name="hero-clipboard-document" class="size-4" /> Copy
           </span>
-          <span class="hidden items-center gap-2 group-data-[copied]:flex">
+          <span class="hidden items-center gap-2 group-data-copied:flex">
             <.icon name="hero-clipboard-document-check" class="size-4" /> Copied!
           </span>
         </.button>
