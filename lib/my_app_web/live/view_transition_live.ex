@@ -3,7 +3,12 @@ defmodule MyAppWeb.ViewTransitionLive do
 
   def render(assigns) do
     ~H"""
-    <div class="mx-auto max-w-4xl" phx-mounted={card_mounted_js()} phx-remove={card_remove_js()}>
+    <div
+      id={"card-#{@index}"}
+      class="right-[50%] translate-x-[50%] absolute max-w-4xl"
+      phx-mounted={card_mounted_js()}
+      phx-remove={card_remove_js()}
+    >
       <div class="mx-8 my-32 rounded-xl bg-orange-100 px-8 py-4 shadow-xl">
         <.header>
           {@card.title}
@@ -27,13 +32,13 @@ defmodule MyAppWeb.ViewTransitionLive do
 
     <div class="left-[50%] translate-x-[-50%] absolute bottom-32">
       <.button
-        phx-click={@prev_path && card_navigate_js(@prev_path, :prev)}
+        phx-click={@prev_path && card_switch_js(@prev_path, :prev)}
         disabled={@prev_path == nil}
       >
         Prev
       </.button>
       <.button
-        phx-click={@next_path && card_navigate_js(@next_path, :next)}
+        phx-click={@next_path && card_switch_js(@next_path, :next)}
         disabled={@next_path == nil}
       >
         Next
@@ -55,6 +60,7 @@ defmodule MyAppWeb.ViewTransitionLive do
 
     {:noreply,
      socket
+     |> assign(:index, index)
      |> assign(:card, Enum.at(socket.assigns.cards, index))
      |> assign(:prev_path, prev_index && ~p"/example/view-transition?index=#{prev_index}")
      |> assign(:next_path, next_index && ~p"/example/view-transition?index=#{next_index}")}
@@ -66,16 +72,15 @@ defmodule MyAppWeb.ViewTransitionLive do
 
   ## JS
 
-  def card_navigate_js(to, dir) when dir in [:prev, :next] do
-    JS.navigate(to)
-    |> JS.set_attribute({"disabled", true})
+  def card_switch_js(to, dir) when dir in [:prev, :next] do
+    JS.patch(to)
     |> JS.add_class("card-change card-#{dir}", to: "body")
   end
 
   def card_mounted_js() do
     JS.transition(
       {
-        "transition-all xduration-300 ease-out",
+        "transition-all duration-300 ease-out",
         "group-[.card-change]/page-transition:opacity-0 " <>
           "group-[.card-prev]/page-transition:-rotate-15 " <>
           "group-[.card-prev]/page-transition:translate-x-[-100%] " <>
@@ -85,7 +90,7 @@ defmodule MyAppWeb.ViewTransitionLive do
       },
       time: 300
     )
-    |> JS.remove_class("card-change card-prev card-next", to: "body", transition: "_")
+    |> JS.remove_class("card-change card-prev card-next", to: "body", transition: "_", time: 300)
   end
 
   def card_remove_js() do
