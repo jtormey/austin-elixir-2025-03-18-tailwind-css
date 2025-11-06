@@ -446,6 +446,7 @@ defmodule MyAppWeb.CoreComponents do
 
   def header(assigns) do
     ~H"""
+    <.noop />
     <header class={[@actions != [] && "flex items-center justify-between gap-6", @class]}>
       <div>
         <h1 class="text-lg font-semibold leading-8 text-zinc-800">
@@ -459,6 +460,8 @@ defmodule MyAppWeb.CoreComponents do
     </header>
     """
   end
+
+  def noop(assigns), do: ~H""
 
   @doc ~S"""
   Renders a table with generic styling.

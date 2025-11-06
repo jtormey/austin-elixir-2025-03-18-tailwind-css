@@ -21,6 +21,7 @@ defmodule MyAppWeb.Router do
 
     live "/test", TestLive
     live "/example/clipboard-copy", ClipboardCopyLive
+    live "/example/tabs", TabsLive
     live "/example/view-transition", ViewTransitionLive
     live "/example/page-transition", PageTransitionLive
     live "/example/animated-split-view", AnimatedSplitViewLive
