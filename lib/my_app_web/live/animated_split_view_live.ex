@@ -25,7 +25,10 @@ defmodule MyAppWeb.AnimatedSplitViewLive do
       >
         <:left>
           <.inner_view_container>
-            <MyAppWeb.PageHTML.phoenix_marketing_details />
+            <.button phx-click="do_work" phx-disable-with="Doing work...">
+              Do work
+            </.button>
+            <MyAppWeb.PageHTML.phoenix_marketing_details :if={false} />
           </.inner_view_container>
         </:left>
         <:right>
@@ -49,6 +52,11 @@ defmodule MyAppWeb.AnimatedSplitViewLive do
 
   def handle_event("update_view_mode", %{"mode" => mode}, socket) do
     {:noreply, assign(socket, :view_mode, mode_from_param(mode))}
+  end
+
+  def handle_event("do_work", _params, socket) do
+    Process.sleep(500)
+    {:noreply, assign(socket, :view_mode, :split)}
   end
 
   ## Helpers

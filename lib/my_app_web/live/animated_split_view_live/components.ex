@@ -136,6 +136,10 @@ defmodule MyAppWeb.AnimatedSplitViewLive.Components do
   def set_view_mode_js(mode) do
     %JS{}
     |> JS.push("update_view_mode", value: %{mode: mode})
-    |> JS.set_attribute({"data-mode", mode}, to: "#split_view_container")
+    # |> JS.set_attribute({"data-mode", mode}, to: "#split_view_container")
+    |> JS.dispatch("phx:set_data_attribute",
+      detail: %{attribute: "mode", value: mode},
+      to: "#split_view_container"
+    )
   end
 end

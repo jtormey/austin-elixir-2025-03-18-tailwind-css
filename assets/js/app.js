@@ -66,3 +66,7 @@ window.addEventListener("phx:copy", (event) => {
     })
   }
 })
+
+window.addEventListener("phx:set_data_attribute", (event) => {
+  event.target.dataset[event.detail.attribute] = event.detail.value
+})
